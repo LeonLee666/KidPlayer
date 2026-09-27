@@ -1,133 +1,208 @@
-# NOVA: opeN sOurce Video plAyer
+# NOVA Video Player (KidPlayer) 开发环境搭建与 APK 编译指南
 
-[![GitHub release](https://img.shields.io/github/v/release/nova-video-player/aos-AVP.svg?logo=github&label=GitHub&cacheSeconds=3600)](https://github.com/moneytoo/Player/releases/latest)
-[![GitHub downloads](https://img.shields.io/github/downloads/nova-video-player/aos-AVP/total?logo=github&cacheSeconds=3600)](https://github.com/nova-video-player/aos-AVP/releases/latest)
-[![Google Play version](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=white&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dorg.courville.nova%26gl%3DUS%26hl%3Den%26l%3DGoogle%2520Play%26m%3D%24version)](https://play.google.com/store/apps/details?id=org.courville.nova)
-[![Google Play rating](https://img.shields.io/endpoint?color=green&logo=google-play&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dorg.courville.nova%26l%3Drating%26m%3D%25E2%2598%2585%2520%24rating)](https://play.google.com/store/apps/details?id=org.courville.nova)
-[![Google Play downloads](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=white&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dorg.courville.nova%26gl%3DUS%26hl%3Den%26l%3Ddownloads%26m%3D%24totalinstalls)](https://play.google.com/store/apps/details?id=org.courville.nova)
-[![Get it on Amazon Appstore](https://badgen.net/badge/Get%20it%20on/Amazon%20Appstore/689f38)](https://www.amazon.fr/dp/B07P1Q1DG9)
-[![Get it on F-Droid](https://img.shields.io/f-droid/v/org.courville.nova?logo=f-droid&label=F-Droid&cacheSeconds=3600)](https://f-droid.org/packages/org.courville.nova)
-[![Get it on IzzyOnDroid](https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/org.courville.nova&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAADAFBMVEUA0////wAA0v8A0v8A0////wD//wAFz/QA0/8A0/8A0/8A0/8A0v///wAA0/8A0/8A0/8A0/8A0//8/gEA0/8A0/8B0/4A0/8A0/8A0/+j5QGAwwIA0//C9yEA0/8A0/8A0/8A0/8A0/8A0/+n4SAA0/8A0/8A0/+o6gCw3lKt7QCv5SC+422b3wC19AC36zAA0/+d1yMA0/8A0/+W2gEA0/+w8ACz8gCKzgG7+QC+9CFLfwkA0/8A0////wAA0/8A0/8A0/8A0/+f2xym3iuHxCGq5BoA1P+m2joI0vONyiCz3mLO7oYA0/8M1Piq3Ei78CbB8EPe8LLj9Ly751G77zWQ1AC96UYC0fi37CL//wAA0/8A0////wD//wCp3jcA0/+j3SGj2i/I72Sx4zHE8FLB8zak1kYeycDI6nRl3qEA0/7V7psA0v6WzTa95mGi2RvB5XkPy9zH5YJ3uwGV1yxVihRLiwdxtQ1ZkAf//wD//wD//wD//wD//wCn5gf//wD//wD//wD//wD//wAA0/+h4A3R6p8A0/+X1w565OD6/ARg237n9csz2vPz+gNt37V/vifO8HW68B/L6ZOCwxXY8KRQsWRzhExAtG/E612a1Rd/pTBpmR9qjysduKVhmxF9mTY51aUozK+CsDSA52T//wD//wAA0////wD//wBJ1JRRxFWjzlxDyXRc0pGT1wCG0CWB3VGUzSTh8h6c0TSr5CCJ5FFxvl6s4H3m8xML0/DA5CvK51EX1N+Y2gSt4Dag3ChE3fax2ki68yO57NF10FRZnUPl88eJxhuCxgCz5EOLwEGf1DFutmahzGW98x0W1PGk3R154MHE6bOn69qv3gy92oG90o+Hn07B7rhCmiyMwECv1nO+0pQfwrCo57xF2daXsVhKrEdenQAduaee1Bsjr42z5D9RoCXy+QNovXpy2Z5MtWDO/TiSukaF3UtE1K6j3B4YwLc5wXlzpyIK0u5zy3uJqg4pu5RTpkZmpVKyAP8A0wBHcExHcEyBUSeEAAABAHRSTlP///9F9wjAAxD7FCEGzBjd08QyEL39abMd6///8P/ZWAnipIv/cC6B//7////////L/1Dz/0D///////86/vYnquY3/v///5T//v///17///////////////84S3QNB/8L/////////////7r/////NP////9l/////wPD4yis/x7Ym2lWSP+em////0n////////v///////////////////7//7pdGN3Urr6/+v/6aT////+//H/o2P/1v+7r7jp4PM/3p4g////g///K///481LxO///v////9w////8v/////9/p3J///a+P9v/5KR/+n///+p/xf//8P//wAAe7FyaAAABCZJREFUSMdj+E8iYKBUgwIHnwQ3N7cEHxcH+///VayoAE0Dh41qR7aBnCIQ8MsJKHH9/99czYYMWlA0cIkJGjMgAKfq//9RNYzIgLcBWYOTiCgDMhDn+B9bh6LebiWyH6L5UZQzONoAHWSHoqEpDkkDsyKqelv1//9rG1HUN9YihZK9AKp6BkG+/6xNqA5ajhSsCkrIipmYGGRa//9vQXVQXSySBnkWJOUMfn5Myuz/G3hR1NdEIUUchwiy+bkTsg4dbW/fu6W/e1c3XMMy5JiOZkFxUFZo74mgKTqaKXu0+2HqVwkja3BH9kFu361JwcHTfPJD4mdfe8ULAdVRyGlJAcVFfg+CQOozZ4XrJ85+JgwBsVXIGriQw5Tp4ZScezd8JiWnBupru30qwJZa+ZAjmWlC8fUZM4qB6kPnLNSPLMWqQQ5ZQ5aOzs1HmamBaQHzFs6y+qAmJCTE8f9/QgKSBg4DJPWc6zVDQkIC09JkZSPD38kukpExFpT4z67uYI/QwCOOCCK/izvu5CWl6AcEWMnKWml7LWbKZfH9/99UkknQHhGsynDz+65eWXv3/JmJrq5eXienVlRUfH/z8VvCf45soKQIH1yDEQsszrp6gwq9C73T87xcXadKl5TkFev4A/2tygmSBqYXqAYJmK+ZuoJydDR1vP09DA0NOy2kpdML81+U/heCpH1JU3jig7lJ5nKOT4i/t6ZHkqGzs4lJmIVHfrj+JR4HqLQSD0yDkCNEpGNn5ix9D03/eJdElTZdKV2TpNOhkwt8YUlNUgimgV0dLMBvf1gz1MolPd5FRcVNSkpDQ8owJeBCDyIhrIDnOD5QcuIU+3/2QKSs9laQ+noNLS0zLWdtqyP7mBAFAw88TwsJgMuJYweBGjYngtWbmeuZOW+bvNQToUFOAlFqOBk4Ov3/L7Z60/aN0p1tUhpa5nqWlub7C3p2I9QzyAghlUvczOz/1fhzPT3XSIfpSmmYAdVbmm1gV0dSz8DSilpUQsqCddIWIA3meuZaJqdMJZEzl6gRqgZIWZAxUdoizERXN8yi5MltcZTChzMaRQM3JNUWHS8rL/+yaPGvMmvr5ywoGoxtkDWwQ+Pb89ycBeWfGSJeL/la+RS1eOPnRtbQKgMRjZg+t8x6PkP273nWQAoFOPAgaeAThKXAmXMrK39Kmr5fsuBlBqoXfJGLe3VbmHjG9Mczi9T//3h7vygXtcDlQtJg44iQiIjIBRbGPO7gghPJy0ZIxT2HOLIUgwxQzsgYrUR350HSIMaJLidhgKY+mw+pflBDrX8E7OGBjPCAPc76gQFSTqAIiYrb/8dRP4CyosJ/rmwU5XIxHMilt4QBJwsSkBMClxOQULBlkRRwEONmR2kJcDGjADX2/+xO8r5iqjExqmLyrWpcPFRta1BfAwCtyN3XpuJ4RgAAAABJRU5ErkJggg==
-)](https://apt.izzysoft.de/fdroid/index/apk/org.courville.nova)
-[![Crowdin](https://badges.crowdin.net/nova-video-player/localized.svg)](https://crowdin.com/project/nova-video-player)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/nova-video-player/aos-AVP/blob/nova/LICENSE.txt)
-[![Reddit Nova Community](https://img.shields.io/reddit/subreddit-subscribers/novavideoplayer?style=social)](https://www.reddit.com/r/NovaVideoPlayer/)
-[![Chat on irc](https://img.shields.io/badge/irc-%23novavideoplayer%20on%20libera.chat-FF55DD?style=flat&logo=liberadotchat&logoColor=FF55DD)](https://web.libera.chat/#novavideoplayer)
-![Build status](https://github.com/nova-video-player/aos-Video/workflows/NOVA%20CI/badge.svg)
-[![Donate paypal](https://img.shields.io/badge/donate_on-Paypal-blue?logo=paypal)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=software%40courville.org&lc=US&item_name=Nova+Video+Player+Donation&no_note=0&no_shipping=1&currency_code=EUR)
-[![Donate paypal](https://img.shields.io/badge/paypal-donate-yello.svg?logo=paypal)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=software%40courville.org&lc=US&item_name=Nova+Video+Player+Donation&no_note=0&no_shipping=1&currency_code=EUR)
-[![Donate liberapay](https://img.shields.io/badge/liberapay-donate-yellow.svg?logo=liberapay)](https://liberapay.com/NovaVideoPlayer/donate)
-[![Donate github sponsor](https://img.shields.io/badge/github-donate-yellow.svg?logo=github)](https://github.com/sponsors/courville)
-[![Donate opencollective](https://img.shields.io/badge/opencollective-donate-yellow.svg?logo=opencollective)](https://liberapay.com/NovaVideoPlayer/donate)
+> 适用场景：Windows 电脑 + WSL2 Ubuntu，项目代码与 Android SDK 放在 E 盘。
+> 本文档基于 2026-09-27 实测通过的完整流程（含网络问题的解决方案）。
+> 项目本地路径：`E:\KidPlayer`（WSL 内为 `/mnt/e/KidPlayer`）
 
-## Overview
+---
 
-NOVA is an open source video player for Android. It consists in a fork of the original Archos Video Player Community Edition that is hosted here: https://github.com/archos-sa/aos-AVP intended to support new features.
+## 一、项目概览
 
-Before asking any question please make sure that you have read the application [FAQ](https://github.com/nova-video-player/aos-AVP/blob/nova/faq/faq.md).
+| 项 | 说明 |
+|---|---|
+| 项目 | NOVA Video Player（开源 Android 视频播放器，Archos 社区版 fork）|
+| 地址 | https://github.com/nova-video-player/aos-AVP |
+| 结构 | 主仓库 + 21 个 git 子模块 |
+| 语言 | Java（UI）+ C/C++（FFmpeg/dav1d/opus 等原生引擎，NDK 构建）|
+| 构建 | Gradle 9.5 + AGP 9.3.2，compileSdk 37，JDK 17 |
+| 核心模块 | `Video/`（主 App UI）、`MediaLib/`（媒体库）、`FileCoreLibrary/`（文件管理）、`native/avos/`（多媒体引擎）|
+| 分支 | 本仓库为个人 fork（`LeonLee666/KidPlayer`，`kid` 分支），子模块 gitlinks 已锁定 v6.4-lint 构建组合（commit `c804185`），`Video` 指向含儿童观看限制功能的 `kid` 分支 |
 
-This is the entry point repo. Its purpose is to provide the manifest to fetch all needed git repos with sources and then bootstrap the build environment.
+## 二、从零搭建（按顺序执行）
 
-More interesting sources can be found there:
-- [Video](https://github.com/nova-video-player/aos-Video): nova's Video UI code
-- [MediaLib](https://github.com/nova-video-player/aos-MediaLib): nova's media library management code
-- [FileCoreLibrary](https://github.com/nova-video-player/aos-FileCoreLibrary): nova's file management code
-- [avos](https://github.com/nova-video-player/aos-avos): C core multimedia engine using ffmpeg
+### 步骤 1：克隆主仓库与子模块（Windows 侧，Git Bash）
 
-For the full list, please look at this manifest https://github.com/nova-video-player/aos-AVP/default.xml
-
-## Building
-
-Get the [repo tool](https://source.android.com/source/downloading), then type:
-```
-mkdir aos; cd aos
-repo init -u https://github.com/nova-video-player/aos-AVP -b nova
-repo sync -j4
-repo forall -c 'git checkout -t $REPO_REMOTE/$REPO_RREV'
-make
+```bash
+cd /e/
+git clone -b kid https://github.com/LeonLee666/KidPlayer.git
+cd KidPlayer
+bash init-submodules.sh        # 逐个克隆21个子模块，网络失败自动重试
 ```
 
-Alternatively, for those not under Linux with a properly installed Android SDK/NDK, you can launch the video player build through:
-```
-cd Video
-./gradlew -Puniversal assembleNoamazonRelease
-```
+> 本 fork 的子模块 gitlinks 已锁定官方 CI v6.4-lint 构建组合并指定了分支，**克隆后无需再手动切 v6.4-lint 分支**（`No rule to make target 'native_libyuv'` 是旧版上游 aos-AVP 的问题）。
 
-In order to speed up the build, build is performed using dav1d, ffmpeg and other pre-built binaries and using local git clone of ffmpeg and dav1d repos. In order to trigger full update rebuild, you need in case of version upstep to manually do:
-```
-rm -rf native/torrentd/libs
-cd native/dav1d-android-builder; git clean -fdx; rm -rf built-*
-cd native/ffmpeg-android-builder; git clean -fdx; rm -rf dist-*
+**注意 WSL 内 git 行尾配置**（2026-09-27 实测）：子模块如果在 WSL 内以 `core.autocrlf=true` 克隆，全部脚本会被转成 CRLF，`gradlew` 报 `/usr/bin/env: 'sh\r': No such file or directory`、make 报 `-f: command not found`。根治方法：
+
+```bash
+# 克隆子模块前，在 WSL 内把行尾策略改为 input（检出不做 CRLF 转换）
+wsl.exe -d Ubuntu -- bash -c "git config --global core.autocrlf input"
 ```
 
-Note that the following packages are required to build:
-```
-sudo curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo
-sudo chmod a+x /usr/local/bin/repo
-sudo apt install build-essential python3 python3-pip python3-setuptools ninja-build maven file wget curl unzip git pkg-config meson nasm openjdk-17-jdk-headless openjdk-8-jdk-headless
-```
+若已经用 autocrlf=true 克隆过，修复方法见步骤 6。
 
-Alternatively, you can use the provided docker image to build nova:
-```
-cd nova/AVP/docker
-docker build -t nova .
-docker run --rm -ti --entrypoint=/bin/bash nova
-make
+### 步骤 2：WSL 内安装系统依赖
+
+> wsl.exe 若被 WorkBuddy 安全策略拦截，需先在 安全中心 → 命令安全 → 程序黑名单 中移除 wsl.exe。
+
+```bash
+# Windows 侧执行（Git Bash），以 root 进入 WSL 避免交互式 sudo 密码卡死
+wsl.exe -d Ubuntu -u root -- bash -c "apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq openjdk-17-jdk-headless ninja-build meson nasm maven file wget curl unzip git pkg-config"
 ```
 
-Github workflow build configuration file is also provided [here](https://github.com/nova-video-player/aos-Video/blob/v6.2/.github/workflows/nova.yml)
+验证：`wsl.exe -d Ubuntu -- bash -c "java -version"` 应显示 17.x（若系统默认是 21，`build-apk.sh` 内已硬编码 `JAVA_HOME` 指向 17，无需切换默认），且 `which ninja meson nasm mvn` 全部有输出。
 
-Binaries prebuilt of torrentd, ffmpeg, dav1d have been committed in order to reduce compilation time and remove nasm, meson dependencies. If you need to regenerate torrentd, ffmpeg and dav1d libs, please run `make clean_prebuilt`.
+### 步骤 3：配置 git 镜像重写（dav1d 源在 WSL 内不可达）
 
-## Latest stable apk
-
-The compiled application is available for installation on:
-
-| Google Play | Amazon Appstore | GitHub | IzzyOnDroid | F‑Droid |
-|:--:|:--:|:--:|:--:|:--:|
-| [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="60">](https://play.google.com/store/apps/details?id=org.courville.nova) | [<img src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png" alt="Get it on Amazon Appstore" height="41">](http://www.amazon.com/gp/mas/dl/android?p=org.courville.nova) | [<img src="https://raw.githubusercontent.com/machiav3lli/oandbackupx/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" alt="Get it on GitHub" height="60">](https://github.com/nova-video-player/aos-AVP/releases) | [<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height="60">](https://apt.izzysoft.de/fdroid/index/apk/org.courville.nova) | [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="60">](https://f-droid.org/packages/org.courville.nova/) |
-
-
-But for me the best way to get the latest nova video player apk is through [obtainium](https://github.com/ImranR98/Obtainium) which I recommend to use.
-
-## Scraping and Scrobbling
-
-Scraping and scrobbling features rely on external services such as [**TMDb**](https://www.themoviedb.org/) and [**Trakt**](https://trakt.tv).
-
-In order to enable NOVA video player to perform these tasks, you need to register to this services and enable the API and inject the corresponding keys inside the following files: *MediaLib/src/community/res/values/donottranslate.xml*
-replacing the fake values below:
-```xml
-    <?xml version="1.0" encoding="utf-8"?>
-    <resources xmlns:android="http://schemas.android.com/apk/res/android">
-        <string name="tmdb_api_key">0123456789abcdef0123456789abcdef</string>
-        <string name="trakt_api_key">0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef</string>
-        <string name="trakt_api_secret">0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef</string>
-    </resources>
+```bash
+wsl.exe -d Ubuntu -- bash -c "bash /mnt/e/KidPlayer/git-mirror-setup.sh"
 ```
 
-Please note that enabling **TMDB** API registration can be completed following this [link](https://www.themoviedb.org/settings/api).
+该脚本把 `code.videolan.org/videolan/dav1d` 重写到 GitHub 官方镜像。**每次新建/重置 WSL 环境都要重跑一次。**
 
-To create a **Trakt** api, first register to trakt then add a new app [here](https://trakt.tv/oauth/applications).
+### 步骤 4：安装 Android SDK（E 盘内，Linux 版组件）
 
-Redirect URI should be http://localhost and be aware to grant all permissions.
+> `sdk-setup.sh` 脚本随仓库提供（2026-09-27 重建），若不存在可从本仓库恢复，或按内含组件清单手动 `sdkmanager` 安装。
 
-## Localization
+```bash
+# Windows 侧下载 cmdline-tools（放 E 盘，Linux 版！）
+curl -L -o cmdtools.zip "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip"
+cd /e/KidPlayer/android-sdk && mkdir -p cmdline-tools
+unzip cmdtools.zip -d /tmp/ct && mv /tmp/ct/cmdline-tools cmdline-tools/latest && rm -rf /tmp/ct cmdtools.zip
 
-You are welcome to contribute to the translation of the application using crowdin platform [here](https://crowdin.com/project/nova-video-player).
+# WSL 内安装组件（licenses → platform/build-tools/NDK/CMake）
+wsl.exe -d Ubuntu -- bash -c "cd /mnt/e/KidPlayer && bash sdk-setup.sh"
+```
 
-## Donate
+需要装齐（sdk-setup.sh 已含）：`platform-tools`、`build-tools;36.0.0`、`platforms;android-36`、`platforms;android-37.0`（注意是 **37.0** 不是 37！）、`ndk;27.2.12479018`、`cmake;3.22.1`。全套装完约 3.4GB（NDK 单独占 2GB），下载安装约 20 分钟。
 
-Any contribution to show your gratitude and appreciation is always welcome, keeping the small team of developers working on their personal time motivated and aware that their dedication means something.
+### 步骤 4.5：初始化 git 子模块（若步骤 1 在 Windows 侧未完成）
 
-If you are up for it, please use any of the following links to make a donation: [paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=software%40courville.org&lc=US&item_name=Nova+Video+Player+Donation&no_note=0&no_shipping=1&currency_code=EUR), [liberapay](https://liberapay.com/NovaVideoPlayer/donate), [github sponsor](https://github.com/sponsors/courville) and [opencollective](https://opencollective.com/novavideoplayer).
+`Video/` 目录为空时 `build-apk.sh` 直接失败。在 WSL 内补跑：
 
-Funds collected are essentially used to buy devices on which problems are reported for analysis and fix in order to cope with Android fragmentation.
+```bash
+wsl.exe -d Ubuntu -- bash -c "cd /mnt/e/KidPlayer && bash init-submodules.sh"
+```
 
-Please bear in mind that the work carried out here results from a small community effort done with good will on scarce personal time.
-If need be, we might in the future introduce some extra bounty programs for specific feature development requests.
+- 带自动重试（默认 5 轮），直到提示"全部 21 个子模块初始化完成"。
+- 已知坑：`native/prebuilt/torrentd` 报 `Fetched ... did not contain 09f3733`（upstream 历史变更，默认拉取策略拿不到固定提交），手动修复：
+  ```bash
+  wsl.exe -d Ubuntu -- bash -c "cd /mnt/e/KidPlayer/native/prebuilt/torrentd && git fetch origin 09f3733cf236128be6267b3af972e848acbd5a7a && git checkout 09f3733cf236128be6267b3af972e848acbd5a7a"
+  ```
+- 验证：`wsl.exe -d Ubuntu -- bash -c "cd /mnt/e/KidPlayer && git submodule status"` 输出不应有 `-` 前缀行（`+` 前缀正常，表示检出与记录 SHA 不同，不影响构建）。
 
-## Support community and chat room
+### 步骤 5：Gradle 与 Maven 镜像配置（应对 WSL 网络不稳）
 
-[NovaVideoPlayer reddit community](https://www.reddit.com/r/NovaVideoPlayer) community is used as the support community for the Nova Video Player application.
-It is possible to chat with Nova Video Player developers on [#novavideoplayer liberachat IRC channel](https://web.libera.chat/).
+WSL2 的 TCP 443 会被间歇性阻断（连 services.gradle.org、maven.aliyun.com 都可能超时），三件套必须配：
 
+```bash
+# 1) Gradle 离线包：Windows 侧下载（WSL 内下不动），wrapper 指向本地文件
+curl -L -o /e/gradle-9.5.0-all.zip "https://mirrors.cloud.tencent.com/gradle/gradle-9.5.0-all.zip"
+# Video/gradle/wrapper/gradle-wrapper.properties 中：
+#   distributionUrl=file\:/mnt/e/gradle-9.5.0-all.zip
+
+# 2) Maven 阿里云镜像 + 重试参数（部署到 WSL 的 ~/.gradle）
+wsl.exe -d Ubuntu -- bash -c "mkdir -p ~/.gradle && cp /mnt/e/KidPlayer/init.gradle ~/.gradle/init.gradle && cp /mnt/e/KidPlayer/gradle-global.properties ~/.gradle/gradle.properties"
+
+# 3) 缺失依赖补入 mavenLocal（阿里云仓库缺 sardine-android 和 trakt-java 的 jar）
+wsl.exe -d Ubuntu -- bash -c "mkdir -p ~/.m2/repository/com/github/nova-video-player/sardine-android/v0.9-nova ~/.m2/repository/com/uwetrottmann/trakt5/trakt-java/6.21.0 && cp /mnt/e/KidPlayer/patch-maven/com/github/nova-video-player/sardine-android/v0.9-nova/* ~/.m2/repository/com/github/nova-video-player/sardine-android/v0.9-nova/ && cp /mnt/e/KidPlayer/patch-maven/trakt-java-6.21.0.* ~/.m2/repository/com/uwetrottmann/trakt5/trakt-java/6.21.0/"
+```
+
+> 注意：trakt-java 的 jar/pom 在 `patch-maven/` 根部，sardine 在 `patch-maven/com/.../v0.9-nova/`，复制时路径别搞混。
+
+### 步骤 6：修复 CRLF 与 repo 布局（首次必做）
+
+```bash
+# 脚本 CRLF 修复（Windows 克隆的仓库行尾是 CRLF，WSL 内 make 会报 "-f: command not found"）
+wsl.exe -d Ubuntu -- bash -c "cd /mnt/e/KidPlayer && find . -path ./.git -prune -o -type f \( -name '*.sh' -o -name '*.mk' -o -name 'Makefile' \) -print0 | xargs -0 -r sed -i 's/\r\$//'"
+
+# AVP 目录（repo 工具布局需要，git clone 没有这个目录）
+cd /e/KidPlayer && rm -f AVP && mkdir AVP && cp core.mk android-setup.sh android-setup-light.sh AVP/
+```
+
+**CRLF 的根治方法（2026-09-27 实测）**：如果子模块是在 WSL 内以 `core.autocrlf=true` 克隆的，仅对 `*.sh/*.mk/Makefile` 做 sed 修复不够（`gradlew` 也会挂：`/usr/bin/env: 'sh\r'`）。根治：
+
+```bash
+# 1) 改行尾策略并重新检出（主仓库 + 所有子模块一次性根治）
+wsl.exe -d Ubuntu -- bash -c "git config --global core.autocrlf input && cd /mnt/e/KidPlayer && git config core.autocrlf input && git rm -q --cached -r . 2>/dev/null; git reset -q --hard && git submodule foreach --recursive 'git rm -q --cached -r . 2>/dev/null; git reset -q --hard'"
+
+# 2) reset 后 wrapper 修改会被撤销！必须重新设置本地 Gradle 离线包指向
+wsl.exe -d Ubuntu -- bash -c "sed -i 's|distributionUrl=.*|distributionUrl=file\\:/mnt/e/gradle-9.5.0-all.zip|' /mnt/e/KidPlayer/Video/gradle/wrapper/gradle-wrapper.properties"
+```
+
+### 步骤 7：编译 + 签名
+
+```bash
+wsl.exe -d Ubuntu -- bash -c "cd /mnt/e/KidPlayer && bash build-apk.sh release && bash sign-apk.sh"
+```
+
+- 产物：`E:\KidPlayer\org.courville.nova-6050001-6.5.1-universal-release-signed.apk`（约 81MB，universal 含 4 种 CPU 架构）
+- 首次编译约 30 分钟（2026-09-27 实测 26 分钟，含原生库构建），增量编译约 9-10 分钟
+- 签名密钥：`nova-release.keystore`（alias=`nova`，密码 `nova123456`）。**后续版本必须用同一密钥，否则无法覆盖安装**
+- 签名时 apksigner 会对 META-INF 下多个未保护条目打 WARNING（app-metadata、SENTRY notices 等），属正常现象，不影响安装使用
+
+---
+
+## 三、常用操作速查
+
+```bash
+# 增量编译 + 签名（日常开发就用这一条）
+wsl.exe -d Ubuntu -- bash -c "cd /mnt/e/KidPlayer && bash build-apk.sh release && bash sign-apk.sh"
+
+# Debug 版
+wsl.exe -d Ubuntu -- bash -c "cd /mnt/e/KidPlayer && bash build-apk.sh debug"
+
+# 安装到已连接设备（WSL 内 adb 不可直达 Windows 的设备，建议 Windows 侧 adb install）
+adb install -r E:\KidPlayer\org.courville.nova-6050001-6.5.1-universal-release-signed.apk
+
+# 原生库完整重建（FFmpeg/dav1d 版本更新后）
+wsl.exe -d Ubuntu -- bash -c "cd /mnt/e/KidPlayer && make clean_prebuilt"
+```
+
+## 四、问题排查
+
+| 症状 | 原因与解决 |
+|---|---|
+| `No rule to make target 'native_libyuv'` | 上游 aos-AVP 的旧问题（子模块 SHA 不匹配）→ 本 fork 已锁定组合，无需处理；若出现则见步骤 1 |
+| `fatal: unable to access ... videolan.org` | WSL 网络不通该域 → 跑 `git-mirror-setup.sh` |
+| Gradle 下载 `Connection timed out` | WSL 443 被间歇阻断 → 用离线包 `E:\gradle-9.5.0-all.zip` + wrapper `file:/` 指向 |
+| Maven 依赖解析失败/超时 | 同上 → 确认 `~/.gradle/init.gradle`（阿里云优先）和 `gradle.properties`（180s 超时+10次重试）已部署 |
+| `Could not find sardine-android / trakt-java` | 阿里云仓库缺 jar → `patch-maven/` 补入 `~/.m2`（见步骤 5.3），并删 `~/.gradle/caches/modules-2/files-2.1/com.uwetrottmann.trakt5` 等缓存 |
+| 脚本报 `-f: command not found`、`AVP: Not a directory` | CRLF 污染 / AVP 布局缺失 → 见步骤 6 |
+| `/usr/bin/env: 'sh\r': No such file or directory` | `gradlew` 等脚本被 `core.autocrlf=true` 转成 CRLF → 见步骤 6 的根治方法（autocrlf=input + 重新检出） |
+| `Fetched ... did not contain <commit>`（torrentd）| upstream 历史变更 → 按 SHA 手动 fetch + checkout，见步骤 4.5 |
+| `Video/` 目录为空、编译直接失败 | 子模块未初始化 → 见步骤 4.5 |
+| `attribute android:showSeekBarValue is private` | 偏好 XML 中该属性必须用 `app:` 命名空间 |
+| sdkmanager 找不到 `platforms;android-37` | 版本号是 `android-37.0`（带小数点）|
+| apt 安装卡住无输出 | sudo 在等密码 → 一律用 `wsl.exe -d Ubuntu -u root` 执行 |
+| WSL 网络全断（curl 全 000）| WSL2 NAT 故障 → `wsl.exe --shutdown` 后重试（ICMP 通不代表 443 通）|
+
+## 五、目录与资产索引
+
+```
+E:\KidPlayer\
+├── android-sdk\              # Android SDK（Linux 版组件，E盘内，约 3.4GB）
+├── patch-maven\              # 缺失依赖补丁（sardine-android、trakt-java）
+├── Video\src\main\java\com\archos\mediacenter\video\player\kidslimit\
+│                             # ★ 儿童观看限制功能源码（自研）
+├── build-apk.sh              # 编译脚本（WSL 内运行）
+├── sign-apk.sh               # 签名脚本（zipalign + apksigner）
+├── init-submodules.sh        # 子模块初始化（带重试）
+├── sdk-setup.sh              # SDK 组件安装脚本（2026-09-27 重建入库）
+├── git-mirror-setup.sh       # git 镜像重写（新 WSL 环境必跑）
+├── init.gradle               # Maven 镜像配置（部署到 WSL ~/.gradle）
+├── gradle-global.properties  # Gradle 超时重试参数（部署到 WSL ~/.gradle）
+├── nova-release.keystore     # 签名密钥（务必备份，勿外泄）
+└── org.courville.nova-6050001-6.5.1-universal-release-signed.apk  # 最新产物
+
+E:\gradle-9.5.0-all.zip       # Gradle 离线包（wrapper 引用，勿删）
+```
+
+## 六、儿童观看限制功能（自研）备忘
+
+- 源码：`Video/src/main/java/com/archos/mediacenter/video/player/kidslimit/`（4 个类）
+- 逻辑：每日 N 轮 × 每轮 M 分钟，到点强制休息 X 分钟（全屏遮罩倒计时），休息结束点屏幕恢复；轮次用完当日禁播，次日 00:00 懒重置
+- 设置：设置页第一位"儿童观看限制"；启用需设家长 PIN（SHA-256），改参数/关闭/重置均需 PIN
+- 计时口径：仅真实播放中的墙钟时间（暂停/缓冲不计）；elapsedRealtime 交叉校验防改系统时间
+- 状态持久化：`nova_kids_limit_state.xml`（独立文件）；配置存默认 SharedPreferences
+- 历史版本修复：① 休息结束未推进轮次导致倒计时死循环 ② tick 与停止回调双重计时 ③ SeekBar 改 ListPreference（TV 适配）
+```

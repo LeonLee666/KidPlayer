@@ -1,3 +1,14 @@
-android-sdk
-android-ndk
-release/config.ini
+# Build outputs and secrets (never commit)
+*.apk
+*.apk.idsig
+*.keystore
+
+# Local tool caches
+.gradle/
+build/
+local.properties
+android-sdk/
+
+# IDE
+.vscode/
+.idea/

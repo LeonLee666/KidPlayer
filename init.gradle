@@ -1,0 +1,30 @@
+// Gradle 全局镜像配置 - 阿里云优先 + jitpack
+def aliyun = 'https://maven.aliyun.com/repository'
+
+allprojects {
+    buildscript {
+        repositories {
+            maven { url "${aliyun}/google" }
+            maven { url "${aliyun}/gradle-plugin" }
+            maven { url "${aliyun}/public" }
+            maven { url 'https://jitpack.io' }
+        }
+    }
+    repositories {
+        mavenLocal()
+        maven { url "${aliyun}/google" }
+        maven { url "${aliyun}/public" }
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+settingsEvaluated { settings ->
+    settings.pluginManagement {
+        repositories {
+            maven { url "${aliyun}/gradle-plugin" }
+            maven { url "${aliyun}/google" }
+            maven { url "${aliyun}/public" }
+            gradlePluginPortal()
+        }
+    }
+}
